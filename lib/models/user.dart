@@ -19,7 +19,7 @@ class User extends Model {
   }
 
   User.fromStructure(Map<String, dynamic> s) {
-      loadBase(s);
+    loadBase(s);
 
     this.credential_ids = s['credential_ids'];
     this.group_ids = s['group_ids'];
@@ -42,7 +42,6 @@ class User extends Model {
         as Stream<Group>;
   }
 
-
   Group newGroup(String name, int access) {
     return new Group(name, access, this.id);
   }
@@ -55,7 +54,6 @@ class User extends Model {
 
   // --- }}}
 }
-
 
 abstract class Property extends Model {
   String owner_id;

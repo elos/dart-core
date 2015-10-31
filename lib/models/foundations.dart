@@ -24,7 +24,7 @@ abstract class Model implements data.Record {
   String Kind();
 
   void loadBase(Map<String, dynamic> s) {
-      this.id = s["id"];
+    this.id = s["id"];
     this.created_at =
         s['created_at'] == null ? null : parseDate(s['created_at']);
     this.updated_at =
@@ -39,7 +39,7 @@ abstract class Model implements data.Record {
 
 // Registers the models with the database
 void RegisterModels(data.DB db) {
-    db.RegisterKind(UserKind, UserSpace, NewUser);
-    db.RegisterKind(GroupKind, GroupSpace, NewGroup);
-    db.RegisterKind(SessionKind, SessionSpace, NewSession);
+  db.RegisterKind(UserKind, UserSpace, NewUser);
+  db.RegisterKind(GroupKind, GroupSpace, NewGroup);
+  db.RegisterKind(SessionKind, SessionSpace, NewSession);
 }

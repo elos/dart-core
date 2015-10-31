@@ -5,7 +5,6 @@ const String SessionSpace = "sessions";
 Session NewSession(Map<String, dynamic> s) => new Session.fromStructure(s);
 
 class Session extends Model {
-
   // --- Properties {{{
 
   String token;
@@ -52,16 +51,16 @@ class Session extends Model {
     var data = JSON.encode({"public": public, "private": private});
 
     HttpRequest
-      .request(host + "/sessions?public=$public&private=$private",
-          method: "POST", sendData: data)
-      .then((req) {
-        if (req.status == 200 || req.status == 201) {
-          Map<String, dynamic> s = JSON.decode(req.response);
-          completer.complete(new Session.fromStructure(s["data"]["session"]));
-        } else {
-          completer.completeError("shoot");
-        }
-      });
+        .request(host + "/sessions?public=$public&private=$private",
+            method: "POST", sendData: data)
+        .then((req) {
+      if (req.status == 200 || req.status == 201) {
+        Map<String, dynamic> s = JSON.decode(req.response);
+        completer.complete(new Session.fromStructure(s["data"]["session"]));
+      } else {
+        completer.completeError("shoot");
+      }
+    });
 
     return completer.future;
   }
