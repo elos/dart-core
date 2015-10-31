@@ -9,6 +9,7 @@ import "dart:convert";
 import 'package:test/test.dart';
 import 'package:core/core.dart';
 import 'package:core/models/models.dart';
+import 'package:core/api/api.dart' as api;
 import 'package:data/data.dart' as data;
 
 void main() {
@@ -79,7 +80,7 @@ void main() {
     test('Session', () async {
         Session session = await Session.Authenticate("http://localhost:8000", "public", "private");
 
-        ElosHost h = new ElosHost("http://localhost:8000", session.token);
+        data.Host h = new api.Host("http://localhost:8000", session.token);
         data.DB db = new data.RestDB(h);
         db.RegisterKind(UserKind, UserSpace, NewUser);
         db.RegisterKind(GroupKind, GroupSpace, NewGroup);
