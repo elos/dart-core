@@ -14,13 +14,8 @@ class Group extends Property {
   }
 
   Group.fromStructure(Map<String, dynamic> s) {
-    this.id = s['id'];
-    this.created_at =
-        s['created_at'] == null ? null : DateTime.parse(s['created_at']);
-    this.updated_at =
-        s['updated_at'] == null ? null : DateTime.parse(s['updated_at']);
-    this.deleted_at =
-        s['deleted_at'] == null ? null : DateTime.parse(s['deleted_at']);
+    loadBase(s);
+
     this.name = s['name'];
     this.access = s['access'];
 

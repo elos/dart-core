@@ -17,14 +17,7 @@ class User extends Model {
   User(this.name);
 
   User.fromStructure(Map<String, dynamic> s) {
-    this.id = s['id'];
-
-    this.created_at =
-        s['created_at'] == null ? null : parseDate(s['created_at']);
-    this.updated_at =
-        s['updated_at'] == null ? null : parseDate(s['updated_at']);
-    this.deleted_at =
-        s['deleted_at'] == null ? null : parseDate(s['deleted_at']);
+      loadBase(s);
 
     this.credential_ids = s['credential_ids'];
     this.group_ids = s['group_ids'];

@@ -14,7 +14,7 @@ import 'package:data/data.dart' as data;
 void main() {
     test('test user', () async {
         data.DB db = new data.MemoryDB();
-        db.RegisterKind(UserKind, UserSpace, NewUser);
+        RegisterModels(db);
 
         User user = new User("Nick");
         expect(user.name, "Nick");

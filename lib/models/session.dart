@@ -3,17 +3,6 @@ part of core.models;
 const String SessionKind = "session";
 const String SessionSpace = "sessions";
 
-DateTime parseDate(String s) {
-  String n;
-  if (s.contains(".") && s.length > 25) {
-    // ms part
-    n = s.split(".")[0] + s.substring(s.length - 6, s.length);
-  } else {
-    n = s;
-  }
-  return DateTime.parse(n);
-}
-
 class Session extends Model {
   String token;
   int expires_after;
@@ -27,17 +16,7 @@ class Session extends Model {
   Session();
 
   Session.fromStructure(Map<String, dynamic> s) {
-    this.id = s['id'];
-
-    if (s['created_at'] is DateTime) {
-      print("is date");
-    }
-    this.created_at =
-        s['created_at'] == null ? null : parseDate(s['created_at']);
-    this.updated_at =
-        s['updated_at'] == null ? null : parseDate(s['updated_at']);
-    this.deleted_at =
-        s['deleted_at'] == null ? null : parseDate(s['deleted_at']);
+      loadBase(s);
 
     this.token = s['token'];
     this.expires_after = s['expires_after'];
@@ -73,3 +52,5 @@ class Session extends Model {
     return {"id": this.id, "token": this.token};
   }
 }
+
+Session NewSession(Map<String, dynamic> s) => new Session.fromStructure(s);
