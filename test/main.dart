@@ -76,14 +76,6 @@ void main() {
         expect(groups.length, 2);
     });
 
-    test("REST DB", () {
-        Authenticate("http://localhost:8000", "public", "private").then( (token) {
-            ElosHost h = new ElosHost("http://localhost:8000", token);
-            data.RestDB rdb = new data.RestDB(h);
-            expect(true, true);
-        });
-    });
-
     test('Session', () async {
         Session session = await Session.Authenticate("http://localhost:8000", "public", "private");
 

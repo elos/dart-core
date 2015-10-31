@@ -6,23 +6,6 @@ import "dart:convert";
 
 import "package:data/data.dart" as data;
 
-Future<String> Authenticate(String host, String public, String private) async {
-  var data = {"public": public, "private": private};
-  var json = JSON.encode(data);
-  print(json);
-  HttpRequest req = await HttpRequest.request(
-      host + "/sessions?public=$public&private=$private",
-      method: "POST",
-      sendData: json);
-  if (req.status == 200 || req.status == 201) {
-    Map<String, dynamic> s = JSON.decode(req.response);
-    print(s);
-    return s["data"]["session"]["token"] as String;
-  } else {
-    throw new Error();
-  }
-}
-
 class ElosHost implements data.Host {
   final String host;
   final String access;
