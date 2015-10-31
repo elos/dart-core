@@ -1,0 +1,9 @@
+name: core
+environment:
+    sdk: '>=1.0.0 <2.0.0'
+dependencies:
+    data:
+        path: "../dart-data"
+dev_dependencies:
+    test: '>=0.12.0 <0.13.0'
+    test_runner: '<=0.2.16'
