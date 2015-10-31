@@ -13,8 +13,6 @@ class Session extends Model {
     return SessionKind;
   }
 
-  Session();
-
   Session.fromStructure(Map<String, dynamic> s) {
       loadBase(s);
 
