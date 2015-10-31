@@ -6,7 +6,7 @@ import "dart:html" show HttpRequest;
 
 import "package:data/data.dart" as data;
 
-const ElosAuthHeader = "Elos-Auth";
+const elosAuthHeader = "Elos-Auth";
 
 class Host implements data.Host {
   final String host;
@@ -15,10 +15,12 @@ class Host implements data.Host {
   Host(this.host, this.accessToken);
 
   Future<HttpRequest> request(String method, String url, dynamic data) async {
-    print("${method} on ${host}${url}");
+    print("[DEBUG] $method on $host$url");
     return HttpRequest.request(this.host + url,
         method: method,
-        requestHeaders: {ElosAuthHeader: this.accessToken},
+        requestHeaders: {
+          elosAuthHeader: this.accessToken
+        },
         sendData: JSON.encode(data));
   }
 
