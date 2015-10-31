@@ -47,9 +47,10 @@ packages:
     version: "0.12.2"
   data:
     description:
-      path: "../dart-data"
-      relative: true
-    source: path
+      ref: master
+      resolved-ref: "88d3d5bfcf4d47ee3129c6683013ffefe59adda1"
+      url: "git://github.com/elos/dart-data.git"
+    source: git
     version: "0.0.0"
   glob:
     description: glob
