@@ -99,10 +99,7 @@ void main() {
         Group g = u.newGroup("New Group", 2);
         expect(g.owner_id, u.id);
 
-        print("COME");
         Group gsaved = await db.Save(g);
-        print("ON");
         expect(gsaved.owner_id, u.id);
-
     });
 }
