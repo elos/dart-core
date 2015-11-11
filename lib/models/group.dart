@@ -2,6 +2,7 @@ part of core.models;
 
 const String GroupKind = "group";
 const String GroupSpace = "groups";
+Group NewGroup(Map<String, dynamic> s) => new Group.fromStructure(s);
 
 class Group extends Property {
   String name;
@@ -14,14 +15,28 @@ class Group extends Property {
   }
 
   Group.fromStructure(Map<String, dynamic> s) {
-    loadBase(s);
+    super.loadStructure(s);
 
     this.name = s['name'];
     this.access = s['access'];
 
-    this.owner_id = s['owner_id'];
     this.grantee_ids = s['grantee_ids'];
     this.context_ids = s['context_ids'];
+  }
+
+  Map<String, dynamic> Structure() {
+    var s = {
+      "name": this.name,
+      "access": this.access,
+      "grantee_ids": this.grantee_ids,
+      "context_ids": this.context_ids,
+    };
+
+    s.addAll(super.Structure());
+
+    print(s);
+
+    return s;
   }
 
   String Kind() {
@@ -31,15 +46,4 @@ class Group extends Property {
   static Future<Group> find(data.DB db, String id) {
     return db.Find(GroupKind, id) as Future<Group>;
   }
-
-  Map<String, dynamic> Structure() {
-    return {
-      "id": this.id,
-      "name": this.name,
-      "owner_id": this.owner_id,
-      "access": this.access
-    };
-  }
 }
-
-Group NewGroup(Map<String, dynamic> s) => new Group.fromStructure(s);

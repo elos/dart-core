@@ -23,7 +23,7 @@ abstract class Model implements data.Record {
 
   String Kind();
 
-  void loadBase(Map<String, dynamic> s) {
+  void loadStructure(Map<String, dynamic> s) {
     this.id = s["id"];
     this.created_at =
         s['created_at'] == null ? null : parseDate(s['created_at']);

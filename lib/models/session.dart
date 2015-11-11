@@ -19,11 +19,10 @@ class Session extends Property {
   }
 
   Session.fromStructure(Map<String, dynamic> s) {
-    loadBase(s);
+    super.loadStructure(s);
 
     this.token = s['token'];
     this.expires_after = s['expires_after'];
-    this.owner_id = s['owner_id'];
     this.credential_id = s['credential_id'];
   }
 
@@ -67,5 +66,4 @@ class Session extends Property {
   }
 
   // --- }}}
-
 }

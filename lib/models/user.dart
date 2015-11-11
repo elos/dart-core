@@ -21,7 +21,7 @@ class User extends Model {
   }
 
   User.fromStructure(Map<String, dynamic> s) {
-    loadBase(s);
+    super.loadStructure(s);
 
     this.credential_ids = s['credential_ids'];
     this.group_ids = s['group_ids'];
@@ -73,10 +73,14 @@ abstract class Property extends Model {
   Future<User> user(data.DB db) => User.find(db, this.owner_id);
   Future<User> owner(data.DB db) => user(db);
 
+  void loadStructure(Map<String, dynamic> s) {
+    super.loadStructure(s);
+
+    this.owner_id = s["owner_id"];
+  }
+
   Map<String, dynamic> Structure() {
-    var s = {
-      "owner_id": this.owner_id,
-    };
+    var s = {"owner_id": this.owner_id,};
 
     s.addAll(super.Structure());
 
