@@ -34,8 +34,6 @@ class Group extends Property {
 
     s.addAll(super.Structure());
 
-    print(s);
-
     return s;
   }
 
