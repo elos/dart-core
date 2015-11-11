@@ -18,7 +18,7 @@ void main() {
         RegisterModels(db);
 
         User user = new User("Nick");
-        expect(user.name, "Nick");
+        expect(user.password, "Nick");
         user.id = "1";
 
         db.Save(user);
@@ -94,5 +94,13 @@ void main() {
 
         Group gsaved = await db.Save(g);
         expect(gsaved.owner_id, u.id);
+
+        var groups = await db.Query(GroupKind).Where("name", "New Group").Execute().toList();
+
+        var foundGroups = false;
+        if (groups.length > 0) {
+          foundGroups = true;
+        }
+        expect(foundGroups, true);
     });
 }

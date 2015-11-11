@@ -4,12 +4,11 @@ const String SessionKind = "session";
 const String SessionSpace = "sessions";
 Session NewSession(Map<String, dynamic> s) => new Session.fromStructure(s);
 
-class Session extends Model {
+class Session extends Property {
   // --- Properties {{{
 
   String token;
   int expires_after;
-  String owner_id;
   String credential_id;
 
   // --- }}}
@@ -29,13 +28,15 @@ class Session extends Model {
   }
 
   Map<String, dynamic> Structure() {
-    return {
-      "id": this.id,
+    var s = {
       "token": this.token,
       "expires_after": this.expires_after,
-      "owner_id": owner_id,
       "credential_id": this.credential_id,
     };
+
+    s.addAll(super.Structure());
+
+    return s;
   }
   // --- }}}
 

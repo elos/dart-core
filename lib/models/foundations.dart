@@ -33,6 +33,17 @@ abstract class Model implements data.Record {
         s['deleted_at'] == null ? null : parseDate(s['deleted_at']);
   }
 
+  Map<String, dynamic> Structure() {
+    return {
+      "id": this.id,
+      "created_at": this.created_at,
+      "updated_at": this.updated_at,
+      "deleted_at": this.deleted_at,
+    };
+  }
+
+  // Define the equivalence for two models to be the equality of their kind and id
+  // Note that their attributes may have diverged
   bool operator ==(Model other) =>
       this.id == other.ID() && this.Kind() == other.Kind();
 }
